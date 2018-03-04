@@ -1,0 +1,83 @@
+<div id="reports" class="page-layout simple fullwidth " >
+
+    <div class="header md-accent-bg" layout="row" layout-align="space-between">
+      <div layout="column" layout-align="center start">
+         <div class="h1" layout="row" layout-align="start center">
+             <md-icon class="light" md-font-icon="icono-reporte2-HaibuSmart"></md-icon>
+            <span>Reportes</span>
+         </div>
+      </div>
+      <div layout="row" layout-align="start center">
+        <!--  <md-button class="light" field-separator="|" csv-header="vm.header" ng-csv="vm.exportCvs($event)" filename="haibu-smart-reporte.csv">
+            <md-icon class="light" md-font-icon="icon-plus-circle-outline"></md-icon>
+            <span >Exportar CVS</span>
+         </md-button> -->
+          <md-button class="md-raised md-secondary smart-button-outline " ng-click="vm.exportCvs($event)" filename="haibu-smart-reporte.csv">
+<!--             <md-icon class="light" md-font-icon="icon-plus-circle-outline"></md-icon>
+ -->            <span >Exportar XLSX</span>
+         </md-button>
+      </div>
+   </div>
+   <!-- CONTENT -->
+  <div class="content" >
+    
+	 <md-card >
+
+	     <md-toolbar class="md-table-toolbar md-default" >
+	        <div class="md-toolbar-tools">
+			   <div class="select-device">Nodo {{vm.device.name}}</div>
+		         <md-menu  md-offset="0 48">
+		                <md-button class="md-icon-button device-selector" ng-click="$mdOpenMenu()"
+		                           aria-label="Select project" md-menu-origin md-menu-align-target>
+		                    <md-icon md-font-icon="icon-dots-horizontal"></md-icon>
+		                </md-button>
+
+		                <md-menu-content width="3" class="md-background-bg">
+		                    <md-menu-item ng-repeat="device in vm.devices">
+		                        <md-button ng-click="vm.selectDevices(device)" aria-label="{{device.name}}">
+		                            <span ng-class="{'secondary-text': vm.device == device}">{{device.name}}</span>
+		                        </md-button>
+		                    </md-menu-item>
+		                </md-menu-content>
+		           </md-menu>
+	        </div>
+	      </md-toolbar>
+
+	      <md-table-container>
+	        <table md-table md-row-select="vm.options.rowSelection" multiple="{{vm.options.multiSelect}}"
+	               ng-model="vm.selected">
+	          <thead md-head md-order="vm.query.order" md-on-reorder="vm.getAllSolicitudes">
+	          <tr md-row ng-if="vm.device.event.data">
+	          	<th md-column>Fecha</th>
+	            <th md-column ng-repeat="data in vm.device.event.data">{{data.id | parseUnits:vm.sensors}}</th>
+	          </tr>
+	          </thead>
+	          <tbody md-body>
+	          <md-progress-linear md-mode="indeterminate" ng-show="vm.isLoading" flex>
+	          </md-progress-linear>
+
+	          <tr md-row ng-if="vm.device.event.data" ng-repeat="event in vm.reports">
+	            <td md-cell> <span am-time-ago="event.timestamp"></span></td>
+	            <td md-cell ng-repeat="header in vm.device.event.data">
+	            	<span ng-repeat="data in event.data | filter:{id:header.id}:true">
+	            		{{data.value}}{{data.id | parseUnits:vm.sensors:true}}
+	            	</span>
+	            </td>
+	          </tr>
+
+
+	          </tbody>
+	        </table>
+	      </md-table-container>
+
+	      <md-table-pagination 
+	                           md-label="{page: 'Página:', rowsPerPage: 'Filas por página:', of: 'de'}"
+	                           md-limit="vm.query.limit" md-limit-options="[5, 10, 15]" md-page="vm.query.page"
+	                           md-total="{{vm.total}}" md-page-select
+	                           md-on-paginate="vm.getEvents"></md-table-pagination>
+
+
+	    </md-card>
+    </div>
+   <!-- / CONTENT -->
+</div>

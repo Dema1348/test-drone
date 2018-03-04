@@ -1,0 +1,160 @@
+#login {
+    height: 100%;
+    background: url('/assets/images/backgrounds/login.jpg') no-repeat;
+    background-size: cover;
+
+    #login-form-wrapper {
+        flex: 1 0 auto;
+        padding: 32px;
+
+        #login-form {
+            width: 280px;
+            max-width: 280px;
+
+
+            .logo {
+                margin-bottom: 40px;
+                text-align:center;
+            }
+
+            .title {
+                font-size: 17px;
+                margin: 16px 0 32px 0;
+            }
+
+            form {
+                width: 100%;
+                text-align: left;
+                
+                md-input-container:not(.md-input-invalid) .md-input {
+                    border-color:#fff;
+                }
+
+                md-input-container {
+                  input {
+                   
+                    font-family: 'OpenSans';
+                    color:#fff;
+                    
+                  }
+
+
+                  input::-webkit-input-placeholder {
+                    font-family: 'OpenSans';
+                    color:#fff;
+                  }
+
+                  input:-moz-placeholder {
+                    font-family: 'OpenSans';
+                    color:#fff;
+                  }
+
+                  input::-moz-placeholder {
+                    font-family: 'OpenSans';
+                    color:#fff;
+                  }
+
+                  input:-ms-input-placeholder {
+                    font-family: 'OpenSans';
+                    color:#fff;
+                  }
+                }
+              
+                md-checkbox.remember-me .md-icon {
+                 border-color:#fff;
+                 background-color: #fff;
+                }
+
+                md-checkbox.md-checked.remember-me .md-icon {
+                  border-color:#fff;   
+                 background-color: #fff;
+                 &:after{
+                    border-color:#0075C9;
+                 }
+                }
+
+                .remember-forgot-password {
+                    font-size: 13px;
+                    margin-top: 16px;
+                    margin-bottom: 16px;
+                    .remember-me {
+                        margin-bottom: 16px;
+                        .md-label{
+                           color:#fff;
+                        }
+                        
+                    }
+
+                    .forgot-password {
+                        font-size: 13px;
+                        font-weight: 500;
+                        margin-bottom: 16px;
+                        color:#fff;
+                    }
+                }
+
+                .submit-button {
+                    width: 280px;
+                    margin: 0;
+                    border-radius: 25px;
+                    box-shadow:initial;
+
+                }
+               .submit-button[disabled] {
+                  color : #50BFEB;
+                  background-color: #36A9E1;
+                }
+
+
+            }
+
+            .register {
+                margin-top: 30px;
+                
+
+
+                .text {
+                    color:#fff;
+                }
+
+                .link {
+
+                }
+            }
+
+            
+
+            .marca{
+                color:#0075C9;
+                margin-top: 40px;
+            }
+        }
+    }
+}
+
+// RESPONSIVE
+@media screen and (max-width: $layout-breakpoint-xs) {
+
+    // #login {
+
+    //     #login-form-wrapper {
+           
+
+    //         #login-form {
+    //             padding: 24px;
+    //             width: 100%;
+
+
+
+    //         }
+    //     }
+    // }
+
+}
+
+
+.forgot-password{
+    md-dialog-content{
+        padding: 24px;
+    }
+}

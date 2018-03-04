@@ -1,0 +1,243 @@
+<div id="help-config" class="page-layout simple tabbed " >
+
+    <div class="header md-accent-bg" layout="row" layout-align="space-between">
+      <div layout="column" layout-align="center start">
+         <div class="h1" layout="row" layout-align="start center">
+             <md-icon class="light" md-font-icon="icono-informacion2-HaibuSmart"></md-icon>
+            <span>Configuraciones</span>
+         </div>
+      </div>
+   
+   </div>
+   <!-- CONTENT -->
+  <div class="content" layout="column">
+      <md-tabs md-dynamic-height>
+
+          	<md-tab label="Configuracion con MQTT">
+
+          		<div class="card md-whiteframe-4dp" layout="column">
+                  
+                    <div  layout="column" >
+                        <div class="h3 primary-text">MQTT</div>
+						<p>Es un protocolo de transporte de mensajería tipo Cliente Servidor de publicación y subscripción. Es utilizado por los nodos para comunicarse con la nube Iot. Se trata de un protocolo creado especialmente para su uso en el IoT, ya que su flujo de datos está optimizado para la reducción del tráfico de la red. </p>
+
+						<p>Utiliza un patrón de envío y suscripción de mensajes que provee una distribución de mensajes de uno a muchos y una separación de las aplicaciones. Su objetivo es ofrecer un servicio de publicación/suscripción a fuentes de datos de forma muy sencilla y pensada en implementaciones ligeras donde el HTTP y los servicios web resultan muy pesados. </p>
+                    </div>
+
+                    
+
+
+                </div>
+
+                <div class="card md-whiteframe-4dp" layout="column">
+                  
+                    <div  layout="column" >
+                        <div class="h3 primary-text">Para la conexión mediante MQTT de un dispositivo dentro de la nube puede utilizar uno de los tres siguientes puertos:</div>
+						<p><span class="text-bold">Puerto 1883</span>: Se envían los datos de manera no segura. La información del dispositivo y las credenciales de autenticación se envía en texto plano.</p>
+						<p><span class="text-bold">Puerto 8883</span>: Se envían los datos de manera segura. La conexión se encripta con TLS v1.2.</p>
+						<p><span class="text-bold">Puerto 443</span>: Puerto que se utiliza para WebSockets. La conexión es segura gracias a la encriptación de la conexión.</p>
+
+                    </div>
+
+                    
+
+
+                </div>
+
+                <div class="card md-whiteframe-4dp" layout="column">
+                  
+                      <div  layout="column" >
+                        <div class="h3 primary-text">Identificador del cliente MQTT</div>
+						<p>Cada nodo debe de autenticarse utilizando un ID de cliente en el siguiente formato</p>
+						 <div class="source-code" layout="column" >
+                            <div class="h3">d:org_id:type_id:device_id</div>
+                        </div>
+                        <div>
+                        	<p><span class="text-bold">d</span>: Identifica que el cliente es un nodo.</p>
+
+							<p><span class="text-bold">org_id</span>: Representa la id de la organización. En este caso es <span class="text-bold">w6ucey</span></p> 
+
+							<p><span class="text-bold">type_id</span>: es el identificador del tipo de nodo que se conecta.</p>
+
+							<p><span class="text-bold">device_id</span>: el id del nodo  que diferencia al nodo entre todos los 
+							nodos.</p> 
+                        </div>
+                         <div class="source-code" layout="column" >
+                            <div class="h3">Ejemplo: d:w6ucey:SmartParking:23232-2323-23</div>
+                        </div>
+
+                       
+
+
+
+                    </div>
+
+                </div>
+
+                <div class="card md-whiteframe-4dp" layout="column">
+                  
+                      <div  layout="column" >
+                        <div class="h3 primary-text">Autenticación</div>
+                        <p>Cada nodo debe de autenticarse utilizando un ID de cliente en el siguiente formato</p>
+						
+                        <div>
+                        	<p><span class="text-bold">Nombre del usuario</span>: el nombre de usuario es “use-token-auth”.</p>
+
+							<p><span class="text-bold">Clave de autentificación</span>: se utiliza la calve de autentificación creada al registrar un nodo </p> 
+
+						
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="card md-whiteframe-4dp" layout="column">
+                  
+                      <div  layout="column" >
+                        <div class="h3 primary-text">Envió de mensajes</div>
+						 <p>Para que el dispositivo pueda enviar los mensajes a la nube, el cliente debe enviar los mensajes al siguiente topico.</p>
+						<div class="source-code" layout="column" >
+                            <div class="h3">iot-2/evt/up/fmt/json</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                  <div class="card md-whiteframe-4dp" layout="column">
+                  
+                      <div  layout="column" >
+                        <div class="h3 primary-text">Formato de los mensajes</div>
+						 <p>Todos los mensajes son enviados en formato JSON. Estos mensajes se deben enviar con el siguiente formato.</p>
+						<div class="source-code" layout="column" >
+                            <div class="h3">{"d" :{ "id_variable": "valor", "id_variable2": "valor2" } }</div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </md-tab>
+            <md-tab label="Configuracion con HTTP 1.1">
+				<div class="card md-whiteframe-4dp" layout="column">
+                  
+                    <div  layout="column" >
+                        <div class="h3 primary-text">HTTP(S)</div>
+                        <p>Es otra opción para poder conectar los nodos a la nube, el envío de eventos se hace mediante una API. Mediante el uso de la API los nodos pueden hacer diferentes peticiones, pero siempre utilizando cabeceras de autorización en los mensajes. En estas cabeceras deben contener las credenciales que autentifiquen al nodo. Además en la petición HTTP se debe  especificar el tipo de contenido del mensaje, en este caso siempre serán cabeceras del tipo Application/json.</p>
+
+						<p>Por otro lado, no se debe de olvidar que este protocolo no está creado especialmente para el IoT, por lo que su consumo de batería al enviar los mensajes y el tamaño de los paquetes es bastante elevado, por lo cual siempre se recomienda conectar los nodos con el protocolo MQTT para así aprovechar los beneficios de este.</p>
+                    </div>
+
+                    
+
+                    
+
+
+                </div>
+
+                <div class="card md-whiteframe-4dp" layout="column">
+                  
+                      <div  layout="column" >
+                        <div class="h3 primary-text">API Rest</div>
+                        <p>Para que el dispositivo pueda enviar los mensajes a la plataforma se debe hacer una solicitud POST  el endpoint con el siguiente formato:</p>
+						<div class="source-code" layout="column" >
+                            <div class="h3">https://org_id.messaging.internetofthings.ibmcloud.com/api/v0002/device/types/type_id/devices/device_id/events/up</div>
+                        </div>
+                          <div>
+							<p><span class="text-bold">org_id</span>: Representa la id de la organización. En este caso es <span class="text-bold">w6ucey</span></p> 
+
+							<p><span class="text-bold">type_id</span>: es el identificador del tipo de nodo que se conecta.</p>
+
+							<p><span class="text-bold">device_id</span>: el id del nodo  que diferencia al nodo entre todos los nodos.</p> 
+                        </div>
+                    </div>
+
+                </div>
+              	
+              	 <div class="card md-whiteframe-4dp" layout="column">
+                  
+                      <div  layout="column" >
+                        <div class="h3 primary-text">Autenticación</div>
+                        <p>Todas las solicitudes deben incluir una cabecera de autorización. La autenticación básica es el único método que se admite. Cuando un dispositivo realiza una solicitud HTTP a través de la API REST, serán necesarias las siguientes credenciales:</p>
+						
+                        <div>
+                        	<p><span class="text-bold">Nombre del usuario</span>: el nombre de usuario es “use-token-auth”.</p>
+
+							<p><span class="text-bold">Clave de autentificación</span>: se utiliza la calve de autentificación creada al registrar un nodo </p>
+						
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+                  <div class="card md-whiteframe-4dp" layout="column">
+                  
+                      <div  layout="column" >
+                        <div class="h3 primary-text">Formato de los mensajes</div>
+						 <p>Todos los mensajes son enviados en formato JSON. Estos mensajes se deben enviar con el siguiente formato.</p>
+						<div class="source-code" layout="column" >
+                            <div class="h3">{"d" :{ "id_variable": "valor", "id_variable2": "valor2" } }</div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </md-tab>
+
+            <md-tab label="Configuracion con HTTP 1.0">
+				<div class="card md-whiteframe-4dp" layout="column">
+                  
+                    <div  layout="column" >
+                        <div class="h3 primary-text">HTTP</div>
+                        <p>Es la opción menos recomendada y se ocupa cuando el nodo no tiene  la capacidad de hacer peticiones en el estándar 1.1, el envío de eventos se hace mediante una API. Mediante el uso de la API los nodos pueden hacer diferentes peticiones.</p>
+
+                    </div>
+
+                  
+
+                    
+
+
+                </div>
+                <div class="card md-whiteframe-4dp" layout="column">
+                  
+                    <div  layout="column" >
+                        <div class="h3 primary-text">API Rest</div>
+                        <p>Para que el dispositivo pueda enviar los mensajes a la plataforma se debe hacer una solicitud GET el endpoint con el siguiente formato:</p>
+						<div class="source-code" layout="column" >
+                            <div class="h3">https://middleware-haibu-smart.mybluemix.net/v1/type_id/device_id/up</div>
+                        </div>
+                          <div>
+							<p><span class="text-bold">type_id</span>: es el identificador del tipo de nodo que se conecta.</p>
+
+							<p><span class="text-bold">device_id</span>: el id del nodo  que diferencia al nodo entre todos los nodos.</p> 
+                        </div>
+                    </div>
+                
+
+
+                </div>
+
+                <div class="card md-whiteframe-4dp" layout="column">
+                  
+                      <div  layout="column" >
+                        <div class="h3 primary-text">Formato de los mensajes</div>
+						 <p>Todos los mensajes son como parametros en el endpoint.</p>
+						<div class="source-code" layout="column" >
+                            <div class="h3">?id_variable=valor&id_variable2=valor2</div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                   
+              
+            </md-tab>
+
+       </md-tabs>
+
+   </div>
+   <!-- / CONTENT -->
+</div>

@@ -1,0 +1,116 @@
+<div id="rules-create" class="page-layout simple fullwidth " >
+   <div class="header md-accent-bg" layout="row" layout-align="space-between">
+      <div layout="column" layout-align="center start">
+         <div class="h1" layout="row" layout-align="start center">
+            <md-icon class="light" md-font-icon="icono-medir2-HaibuSmart"></md-icon>
+            <span>{{vm.isEdit?"Editar Regla":"Crear Regla"}}</span>
+         </div>
+      </div>
+       <div layout="row" layout-align="start center">
+       
+          <md-button ng-if="vm.isEdit" class="light" ng-click="vm.deleteRule($event)" >
+               <span >Eliminar Regla</span>
+         </md-button>
+      </div>
+
+   </div>
+   <!-- CONTENT -->
+   <div class="content" >
+      <md-card >
+         <form name="ruleForm" class="md-inline-form" novalidate>
+            <md-toolbar class="md-accent">
+               <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+                  <h4 class="title">
+                     <span>Informacion Básica</span>
+                  </h4>
+               </div>
+            </md-toolbar>
+            <div class="p-16">
+               <md-input-container class="md-block" >
+                  <label >Nombre  </label>
+                  <input name="name" ng-model="vm.rule.name" type="text"  required>
+                  <div ng-messages="ruleForm.name.$error" role="alert" >
+                     <div ng-message="required">
+                        <span >El nombre es requerido.</span>
+                     </div>
+                  </div>
+               </md-input-container>
+               <md-input-container class="md-block" >
+                  <label >Descripción </label>
+                  <input name="description" ng-model="vm.rule.description" type="text"  >
+               </md-input-container>
+               <md-input-container class="md-block" >
+                  <label >Se aplicará en el nodo </label>
+                  <md-select name="deviceId" ng-model="vm.rule.device" type="text"  ng-change="vm.changeDevice()"required ng-model-options="{trackBy: '$value.deviceId'}">
+                     <md-option ng-repeat="device in  vm.devices" ng-value="{{device}}">{{device.name}}
+                     </md-option>
+                  </md-select>
+               </md-input-container>
+            </div>
+         </form>
+      </md-card>
+
+       <md-card class="mt-16" ng-if="vm.rule.device">
+         <form name="conditionForm" class="md-inline-form" novalidate>
+            <md-toolbar class="md-accent">
+               <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+                  <h4 class="title">
+                     <span>Condición</span>
+                  </h4>
+               </div>
+            </md-toolbar>
+            <div class="p-16">
+               <md-input-container class="md-block">
+                  <label >Propiedad</label>
+                  <md-select name="property" ng-model="vm.condition.property" type="text"  required>
+                  <md-option ng-repeat="data in  vm.rule.device.event.data" value="{{data.id}}">{{data.id}}
+                  </md-option>
+                  </md-select>
+              </md-input-container>
+
+              <md-input-container class="md-block">
+                  <label >Operación</label>
+                  <md-select name="operation" ng-model="vm.condition.operation" type="text"  required >
+                  <md-option ng-repeat="operation in  vm.operations" value="{{operation}}">{{operation}}
+                  </md-option>
+                  </md-select>
+              </md-input-container>
+
+               <md-input-container class="md-block">
+                  <label >Comprar con</label>
+                  <md-select name="comparison" ng-model="vm.condition.comparison" type="text"  required >
+                  <md-option ng-repeat="comparison in  vm.comparisons" value="{{comparison.id}}">{{comparison.text}}
+                  </md-option>
+                  </md-select>
+              </md-input-container>
+
+              <md-input-container class="md-block" ng-if="vm.condition.comparison == 'property'">
+                  <label >Propiedad</label>
+                  <md-select name="propertyComparison" ng-model="vm.condition.propertyComparison" type="text"  required  >
+                  <md-option ng-repeat="data in  vm.rule.device.event.data" value="{{data.id}}">{{data.id}}
+                  </md-option>
+                  </md-select>
+              </md-input-container>
+
+
+              <md-input-container class="md-block" ng-if="vm.condition.comparison == 'static'">
+                  <label >Valor </label>
+                  <input name="propertyComparison" ng-model="vm.condition.propertyComparison" type="number"  required>
+                   <div ng-messages="propertyComparison.value.$error" role="alert" >
+                          <div ng-message="required">
+                              <span >El valor es requerido.</span>
+                          </div>
+                  </div>
+              </md-input-container>
+               <md-button type="submit"  ng-click="vm.saveRule($event)"
+                           class="md-raised md-secondary smart-button submit-button"
+                           ng-disabled="conditionForm.$invalid  || ruleForm.$invalid "
+                         >
+                    GUARDAR
+                </md-button>
+            </div>
+         </form>
+      </md-card>
+   </div>
+   <!-- / CONTENT -->
+</div>

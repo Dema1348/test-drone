@@ -1,0 +1,101 @@
+<div id="nodes-list" class="page-layout simple fullwidth " >
+   <div class="header md-accent-bg" layout="row" layout-align="space-between">
+      <div layout="column" layout-align="center start">
+         <div class="h1" layout="row" layout-align="start center">
+            <md-icon class="light" md-font-icon="icono-senal2-HaibuSmart"></md-icon>
+            <span> Nodos</span>
+         </div>
+      </div>
+      <div layout="row" layout-align="start center">
+         <md-button class="md-raised md-secondary smart-button-outline " ng-click="vm.dialogDevice($event)">
+            <span >Registrar Kit</span>
+         </md-button>
+      </div>
+   </div>
+   <!-- CONTENT -->
+   <div class="content">
+     
+               <div layout="row" flex="100" layout-wrap>
+                  <div  layout="column" flex="100" flex-gt-xs="50" flex-gt-md="25" layout="column" flex="100" flex-gt-xs="50" flex-gt-md="25"  ng-repeat="device in vm.devices " >
+                     <div class="white-bg m-8 " >
+
+                        <md-list-item class="md-2-line " ng-if="!device.loadEvent">
+                           <div class="md-list-item-text text" layout="column">
+                                  <h3 class="h4 pt-16 text-semi ">{{device.name}}</h3>
+                                  <h4 class="h6">{{device.event.data.length?"Última actualización":"Sin registros"}}</h3>
+                                  <p class="h5 text-semi" ng-if="device.event.data"> 
+                                    <span am-time-ago="device.event.timestamp"></span> 
+                                  </p>
+                           </div>
+                           <md-menu class="pt-16">
+                                 <md-button class="md-icon-button" ng-click="$mdOpenMenu()" md-menu-origin md-menu-align-target aria-label="Options">
+                                    <md-icon md-font-icon="icon-dots-vertical" class="icon"></md-icon>
+                                 </md-button>
+                                 <md-menu-content width="3">
+                                    <md-menu-item>
+                                       <md-button ng-click="vm.refreshLastEvent($event,device)">
+                                          <md-icon md-font-icon="icono-refrescar-HaibuSmart" class="icon"></md-icon>
+                                          Refrescar
+                                       </md-button>
+                                    </md-menu-item>
+
+                                     <md-menu-item  ng-if="!device.isFollow">
+                                       <md-button ng-click="vm.config($event,device)">
+                                          <md-icon md-font-icon="icon-share" class="icon" ></md-icon>
+                                          Configuración
+                                       </md-button>
+                                    </md-menu-item>
+                                    
+                                    <md-menu-item >
+                                       <md-button  ng-click="vm.unregister($event,device)">
+                                          <md-icon md-font-icon="icono-sin-HaibuSmart" class="icon"></md-icon>
+                                          Eliminar
+                                       </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item >
+                                       <md-button  ng-click="vm.dialogDevice($event,device)">
+                                          <md-icon md-font-icon="icono-engranaje2-HaibuSmart" class="icon"></md-icon>
+                                          Editar
+                                       </md-button>
+                                    </md-menu-item>
+                                 </md-menu-content>
+                              </md-menu>
+
+                        </md-list-item>
+                        <div ng-if="!device.loadEvent">
+                           <!-- <div class="pt-16 pr-16 pl-16 pb-8" >
+                              <div class="h4 text-semi ">
+                                 
+                              </div>
+                              <div class="h6 ">
+                                 {{device.event.data.length?"Última actualización":"Sin registros"}}
+                              </div>
+                              <div class="h6 text-semi " ng-if="device.event.data">
+                                 <span am-time-ago="device.event.timestamp"></span>
+                              </div>
+                           </div> -->
+                           <div class="pb-8 " layout="column" layout-align="center center"   ng-if="device.event.data.length" >
+                              <div class="text-center font-size-62 line-height-62 primary-text font-weight-400 text-semi">
+                                 {{device.event.data[0].value | number : 1}}{{device.event.data[0].id| parseUnits:vm.sensors:true}}
+                              </div>
+                              <div class="h1 text-center text-bold">
+                                 <span>{{device.event.data[0].id| parseUnits:vm.sensors}}</span>
+                                 <md-icon class="animated infinite pulse {{device.event.timestamp | colorState:device.event.data[0].alert }}" md-font-icon="icon-brightness-1"></md-icon>
+                              </div>
+                           </div>
+                           <div class="text-center pb-8">
+                              <md-button class="md-raised md-secondary smart-button" ng-click="vm.detalle($event,device)">
+
+                                Ver Detalle
+                              </md-button>
+                           </div>
+                        </div>
+                        <div layout="row" class="p-16" layout-align="space-around" ng-if="device.loadEvent">
+                           <md-progress-circular md-mode="indeterminate" md-diameter="90" ></md-progress-circular>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+   </div>
+   <!-- / CONTENT -->
+</div>

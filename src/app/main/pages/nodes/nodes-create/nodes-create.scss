@@ -1,0 +1,45 @@
+#nodes-create {
+    background:#ffffff;
+    > .header {
+        height: 86px !important;
+        min-height: 86px !important;
+        max-height: 86px !important;
+        padding: 24px !important;
+        .h1{
+            md-icon{
+                font-size: 36px;
+                 margin-right: 12px;
+            }
+        }
+
+        md-button {
+            padding: 0 8px;
+            min-width: 45px;
+
+            span {
+                margin-left: 4px;
+            }
+        }
+    }
+
+    > .content {
+         padding: 0;
+         background:#ffffff;
+            .angular-google-map-container{
+                height: 300px;
+            }
+            .preview{
+                padding: 16px;
+                font-size: 16px;
+                background: #F9FAFB;
+                margin-bottom: 16px;
+
+            }
+    }
+
+   
+}
+
+
+
+

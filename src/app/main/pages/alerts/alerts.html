@@ -1,0 +1,45 @@
+<div id="alerts" class="page-layout simple fullwidth " >
+    
+
+        <div class="header md-accent-bg" layout="row" layout-align="space-between">
+            <div layout="column" layout-align="center start">
+                
+
+                  <div class="h1" layout="row" layout-align="start center">
+                    <md-icon class="light" md-font-icon="icono-advertencia2-HaibuSmart"></md-icon>
+                    <span> Alertas</span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- CONTENT -->
+        <div class="content">
+		    <!-- TIMELINE ITEM -->
+		    <div class="timeline-item" layout="column" layout-align="center center" layout-gt-md="row"
+		         layout-align-gt-md="center start"
+		         ng-repeat="alert in vm.alerts | orderBy:'-timestamp'">
+
+		        <div class="timeline-detail" flex="50">
+		            <div class="time">
+		                <span am-time-ago="alert.timestamp "></span>
+		            </div>
+
+		        </div>
+
+		        <div class="timeline-card" layout="row" flex="50">
+		            <md-card>
+		            	<md-card-content>
+		            		<h2>{{alert.title}}</h2>
+		            		<p>{{alert.event}}</p>
+		            	</md-card-content>
+		            </md-card>
+		          
+		        </div>
+
+		    </div>
+    		<!-- / TIMELINE ITEM -->
+	    </div >
+
+</div>

@@ -1,0 +1,37 @@
+#help-config {
+   
+    > .header {
+        height: 86px !important;
+        min-height: 86px !important;
+        max-height: 86px !important;
+        padding: 24px !important;
+        .h1{
+            color:#fff;
+            font-size: 24px;
+            md-icon{
+                font-size: 36px;
+                 margin-right: 12px;
+            }
+        }
+
+ 
+
+       
+    }
+
+    > .content {
+    	.card{
+            background: #FFFFFF;
+            margin: 16px 0 48px 0;
+            padding: 24px;
+            .source-code{
+                color: #333;
+                background: #f8f8f8;
+                padding: 8px 16px;
+            }
+        }
+
+    }
+}
+
+

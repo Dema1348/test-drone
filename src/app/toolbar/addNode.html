@@ -1,0 +1,108 @@
+<!-- DIALOG -->
+<md-dialog class="node-dialog" aria-label="Seguir Nodo">
+
+    <form name="deviceForm" class="md-inline-form" novalidate>
+
+        <!-- DIALOG TOOLBAR -->
+        <md-toolbar class="md-accent" layout="column">
+
+            <!-- TOOLBAR TOP -->
+            <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+                <span class="title">Seguir Nodo</span>
+                <md-button class="md-icon-button" ng-click="vm.cancel()" aria-label="Close dialog" >
+                    <md-icon md-font-icon="icon-close"></md-icon>
+                </md-button>
+            </div>
+            <!-- / TOOLBAR TOP -->
+
+        </md-toolbar>
+        <!-- / DIALOG TOOLBAR -->
+
+        <!-- DIALOG CONTENT -->
+        <md-dialog-content ms-scroll>
+
+          <md-input-container class="md-block">
+                     <input type="text" name="name" ng-model="vm.deviceForm.name"
+                                     ng-pattern="/^[A-Za-z0-9\-\_\.\s]{1,36}$/"
+                                     maxlength="36" 
+                                       placeholder="Nombre del nodo"
+                                       required>
+                        <div ng-messages="deviceForm.name.$error"
+                             role="alert">
+                            <div ng-message="required">
+                                <span>Debe especificar el nombre para su nodo.</span>
+                            </div>
+                            <div ng-message="maxlength">
+                                <span>El nombre del nodo no puede tener mas de 36 caracteres.</span>
+                            </div>
+                      </div>
+            </md-input-container>
+
+            <md-input-container class="md-block">
+                     <input type="text" name="deviceId" ng-model="vm.deviceForm.deviceId"
+                                     ng-pattern="/^[A-Za-z0-9\-\_\.]{1,36}$/"
+                                     maxlength="36" 
+                                       placeholder="Id del nodo"
+                                        server-validation="['not_found']"
+                                       required>
+                        <div ng-messages="deviceForm.deviceId.$error"
+                             role="alert">
+                            <div ng-message="required">
+                                <span>Debe especificar la Id del nodo.</span>
+                            </div>
+                            <div ng-message="maxlength">
+                                <span>La Id del nodo no puede tener mas de 36 caracteres.</span>
+                            </div>
+                             <div ng-message="not_found">
+                              <span >No se ha encontrado el nodo especificado.</span>
+                          </div>
+                      </div>
+            </md-input-container>
+
+                         <md-input-container class="md-block">
+                            <label>Tipo de nodo</label>
+                              <input name="typeId" 
+                                        ng-pattern="/^[A-Za-z0-9\-\_\.\s]{1,8}$/"
+                                        maxlength="8" 
+                                        minlength="8" 
+                                        placeholder="Tipo de nodo"
+                                          
+                                        ng-model="vm.deviceForm.typeId" required >
+                           
+                            <div ng-messages="deviceForm.typeId.$error"
+                             role="alert">
+                              <div ng-message="required">
+                                                <span>El tipo de nodo es requerido.</span>
+                                            </div>
+                                               <div ng-message="minlength">
+                                                <span>El tipo de nodo no puede tener menos de 8 caracteres.</span>
+                                            </div>
+                                        <div ng-message="maxlength">
+                                            <span>El tipo de nodo no puede tener más de 8 caracteres.</span>
+                                        </div>
+                              
+                          </div>
+                        </md-input-container>
+
+        </md-dialog-content>
+        <!-- / DIALOG CONTENT -->
+
+        <!-- DIALOG ACTIONS -->
+        <md-dialog-actions layout="row" layout-align="space-between center">
+            <div layout="row" layout-align="start center">
+                <md-button type="submit" ng-click="vm.add()"
+                           class="send-button md-accent md-raised"
+                           ng-disabled="deviceForm.$invalid || deviceForm.$pristine">
+                    Agregar
+                </md-button>
+
+            </div>
+
+          
+        </md-dialog-actions>
+        <!-- / DIALOG ACTIONS -->
+
+    </form>
+
+</md-dialog>
+<!-- / DIALOG -->

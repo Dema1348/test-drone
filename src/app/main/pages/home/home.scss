@@ -1,0 +1,325 @@
+#home {
+ $blue: #0095F4;
+ $red:#c74048;
+ $green: #37af45;
+ $amarillo:#d58d34;
+
+    > .header {
+        height: 86px !important;
+        min-height: 86px !important;
+        max-height: 86px !important;
+        padding: 24px !important;
+        .h1{
+            color:#fff;
+            .wellcome{
+                font-weight: 300;
+            }
+        }
+
+        .time{
+            font-size: 1.4rem;
+            color:#fff;
+        }
+        .full-time{
+             font-size: 1.2rem;
+            color:#fff;
+        }
+    }
+
+    > .content {
+          
+             padding: 12px;
+            // ms-widget{
+            //     max-height: 425px;
+                
+            // }
+            .max-map{
+                 max-height: 340px!important;
+            }  
+
+
+
+            .angular-google-map-container {
+                height:330px;
+            }
+
+            .line-chart{
+                .nv-group.nv-series-0 {
+                     fill: $blue!important; 
+                     fill-opacity: 0.2 !important;
+                }
+
+            } 
+
+           
+           
+            $wifi_band-height:0.5rem;
+           
+            %band{
+                padding:$wifi_band-height;
+                border: $wifi_band-height solid;
+                border-color: #E8EAEE transparent transparent transparent;
+                border-radius:200px;
+                 animation: radiate 2s linear infinite;
+            }
+
+            .data{
+                color : $blue;
+
+            }
+
+            .circle{
+              font-size: 12px;
+              width: 12px;
+              height: 12px;
+              line-height: 12px;
+              min-height: 12px;
+              max-width: 12px;
+                 &.bad{
+                   color:$red;
+                   }
+                   &.regular{
+                    color:$amarillo;
+                    
+                   }
+
+                   &.good{
+                     color:$blue;
+                   }
+                   &.exc{
+                     color:$green;
+                   }
+            }
+
+            .wifi{
+              height:$wifi_band-height * 9;
+              width: $wifi_band-height * 17;
+              text-align: center;
+              margin: 0 auto;
+              margin-top: 10px;
+              
+              .band-4{
+                @extend %band;
+                
+                    &.bad{
+                    animation: radiate-bad 2s linear infinite;
+                    animation-delay:.8s;
+                   }
+                   &.regular{
+                        animation: radiate-regular 2s linear infinite;
+                         animation-delay:.8s;
+                   }
+
+                   &.good{
+                        animation: radiate-good 2s linear infinite;
+                         animation-delay:.8s;
+                   }
+                   &.exc{
+                        animation: radiate-exc 2s linear infinite;
+                         animation-delay:.8s;
+                   }
+              }
+              .band-3{
+                @extend %band;
+                &.bad{
+                    animation: radiate-bad 2s linear infinite;
+                    animation-delay:.6s;
+                   }
+                   &.regular{
+                        animation: radiate-regular 2s linear infinite;
+                        animation-delay:.6s;
+                   }
+
+                   &.good{
+                        animation: radiate-good 2s linear infinite;
+                        animation-delay:.6s;
+                   }
+                   &.exc{
+                        animation: radiate-exc 2s linear infinite;
+                        animation-delay:.6s;
+                   }
+              }
+              .band-2{
+                @extend %band;
+                
+                    &.bad{
+                    animation: radiate-bad 2s linear infinite;
+                    animation-delay:.4s;
+                   }
+                   &.regular{
+                        animation: radiate-regular 2s linear infinite;
+                         animation-delay:.4s;
+                   }
+
+                   &.good{
+                        animation: radiate-good 2s linear infinite;
+                         animation-delay:.4s;
+                   }
+                   &.exc{
+                        animation: radiate-exc 2s linear infinite;
+                         animation-delay:.4s;
+                   }
+              }
+              .band-1{
+                @extend %band;
+                &.bad{
+                    animation: radiate-bad 2s linear infinite;
+                    animation-delay:.2s;
+
+                   }
+                   &.regular{
+                        animation: radiate-regular 2s linear infinite;
+                        animation-delay:.2s;
+                   
+                   }
+
+                   &.good{
+                        animation: radiate-good 2s linear infinite;
+                         animation-delay:.2s;
+                   }
+                   &.exc{
+                        animation: radiate-exc 2s linear infinite;
+                         animation-delay:.2s;
+                   }
+              }
+              .center{
+                height: $wifi_band-height;
+                width: $wifi_band-height;
+                background:$blue;
+                border-radius: 50%;
+                margin: 0 auto;
+                animation: blink 2s linear infinite;
+                  &.bad{
+                    animation: blink-bad 2s linear infinite;
+                  
+
+                   }
+                   &.regular{
+                        animation: blink-regular 2s linear infinite;
+                      
+                   
+                   }
+
+                   &.good{
+                        animation: blink-good 2s linear infinite;
+                       
+                   }
+                   &.exc{
+                        animation: blink-exc 2s linear infinite;
+                       
+                   }
+              }
+            }
+            @keyframes radiate{
+              0% {border-top: $wifi_band-height solid #E8EAEE;}
+                100% { border-top: $wifi_band-height solid rgba(0,0,0,0.1);}
+            }
+             @keyframes radiate-bad{
+              0% {border-top: $wifi_band-height solid $red;}
+                100% { border-top: $wifi_band-height solid rgba(0,0,0,0.1);}
+            }
+             @keyframes radiate-regular{
+              0% {border-top: $wifi_band-height solid $amarillo;}
+                100% { border-top: $wifi_band-height solid rgba(0,0,0,0.1);}
+            }
+             @keyframes radiate-good{
+              0% {border-top: $wifi_band-height solid $blue;}
+                100% { border-top: $wifi_band-height solid rgba(0,0,0,0.1);}
+            }
+
+             @keyframes radiate-exc{
+              0% {border-top: $wifi_band-height solid $green;}
+                100% { border-top: $wifi_band-height solid rgba(0,0,0,0.1);}
+            }
+            @keyframes blink{
+              0% {background: #E8EAEE;}
+                100% { background: rgba(0,0,0,0.1);}
+            }
+
+            @keyframes blink-bad{
+              0% {background: $red;}
+                100% { background: rgba(0,0,0,0.1);}
+            }
+
+             @keyframes blink-regular{
+              0% {background: $amarillo;}
+                100% { background: rgba(0,0,0,0.1);}
+            }
+
+             @keyframes blink-good{
+              0% {background: $blue;}
+                100% { background: rgba(0,0,0,0.1);}
+            }
+
+             @keyframes blink-exc{
+              0% {background: $green;}
+                100% { background: rgba(0,0,0,0.1);}
+            }
+
+
+          
+                
+
+            .slides-container>div>div {
+              height: 100%!important;
+              width: 100%!important;
+
+            }
+            .jk-carousel .md-icon-button{
+                height: 48px;
+                min-width: 0;
+                line-height: 24px;
+                padding: 0px;
+                width: 48px;
+                border-radius: inherit;
+            }
+            .jk-carousel .md-icon-button md-icon{
+                height: auto;
+            }
+
+
+            .gauge{
+               .c3-chart-arcs-background{
+                fill:#E8EAEE!important
+               }
+               .c3-chart-arcs-gauge-max,.c3-chart-arcs-gauge-min{
+                fill:#4B4A4B;
+               }
+               .c3-chart-arcs-gauge-unit{
+                 fill:$blue!important;
+                font-size: 12px!important;
+                 font-family: 'OpenSans-Semibold'!important;
+               }
+               .c3-gauge-value{
+                 fill:$blue!important;
+                   font-size: 26px!important;
+                 font-family: 'OpenSans-Semibold'!important;
+               }
+
+            } 
+
+            .gauge-color{
+                .mtt-majorGraduationText{
+                    fill:#4B4A4B!important;
+                    font-family: 'OpenSans-Semibold'!important;
+
+                }
+                .mtt-graduationValueText{
+                     font-family: 'OpenSans-Semibold'!important;
+                }
+            }
+            .difference{
+               margin-top: -30px;
+                md-icon{
+                   color:$blue!important; 
+                }
+                color:$blue;
+            }  
+
+
+    }
+
+
+ 
+
+}

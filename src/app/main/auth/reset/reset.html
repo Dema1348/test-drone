@@ -1,0 +1,69 @@
+<div id="reset" class="flex-scrollable" layout="column" ms-scroll>
+    <div id="reset-form-wrapper" layout="column" layout-align="center center">
+        <div id="reset-form" >
+            <div class="logo">
+                <img src="assets/images/logos/marca-HaibuSmart.png" alt="logo">
+            </div>
+
+            <form name="resetForm" novalidate >
+                
+                <md-input-container class="md-block" md-no-float>
+                    <input type="password" name="password" ng-model="vm.resetForm.password" placeholder="Nueva contraseña"
+                           maxlength="30" 
+                           minlength="8"  
+                           server-validation="['AUTHORIZATION_REQUIRED']"
+                           required>
+                    <div ng-messages="resetForm.password.$error" role="alert">
+                        <div ng-message="required">
+                            <span >La contraseña es requerida</span>
+                        </div>
+                         <div ng-message="minlength">
+                            <span>La contraseña no puede tener menos de 8 caracteres.</span>
+                        </div>
+                        <div ng-message="maxlength">
+                            <span>La contraseña no puede tener mas de 30 caracteres.</span>
+                        </div>  
+                         <div ng-message="AUTHORIZATION_REQUIRED">
+                            <span >El token ya ha sido utilizado.</span>
+                        </div>             
+                    </div>
+                </md-input-container>
+
+                <md-input-container class="md-block" md-no-float>
+                    <input type="password" name="passwordConfirm" ng-model="vm.resetForm.passwordConfirm"
+                           placeholder="Confirmar contraseña"
+                           ng-pattern="{{vm.resetForm.password}}" 
+                           required>
+                    <div ng-messages="resetForm.passwordConfirm.$error" role="alert">
+                        <div ng-message="required">
+                            <span>La contraseña  de confirmación es requerida</span>
+                        </div>
+                        <div ng-message="pattern">
+                            <span >Las contraseñas no son iguales</span>
+                        </div>
+                    </div>
+                </md-input-container>
+
+                <md-button type="submit" class="md-raised md-accent submit-button" aria-label="LOG IN" ng-click="vm.reset($event)"
+                           ng-disabled="resetForm.$invalid || resetForm.$pristine || vm.isLoading"
+                          >
+                    Reiniciar mi contraseña
+
+
+                </md-button>
+        
+            </form>
+            <div class="login" layout="row" layout-xs="column"
+                     layout-align="space-between  center">
+                <span class="text" >¿Ya tienes una cuenta?</span>
+                <a class="link" ui-sref="app.auth_login" >Iniciar sesión</a>
+            </div>
+              <div class="text-center">
+                <p class="marca">© HaibuSmart | Haibu Group</p>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>

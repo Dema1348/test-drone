@@ -1,0 +1,128 @@
+<div id="register" class="flex-scrollable" layout="column" ms-scroll>
+    <div id="register-form-wrapper" layout="column" layout-align="center center">
+        <div id="register-form" >
+            <div class="logo">
+                <img src="assets/images/logos/marca-HaibuSmart.png" alt="logo">
+            </div>
+
+            <form name="registerForm" novalidate ng-submit="vm.register($event)">
+                <md-input-container class="md-block" md-no-float>
+                    <input name="firstName" ng-model="vm.registerForm.firstName" placeholder="Nombre"
+                           maxlength="30" 
+                           minlength="4" 
+                           server-validation="['length.min','length.max']"
+                           required>
+                    <div ng-messages="registerForm.firstName.$error" role="alert">
+                        <div ng-message="required">
+                            <span>El nombre es requerido.</span>
+                        </div>
+                        <div ng-message="minlength">
+                            <span>El nombre no puede tener menos de 4 caracteres.</span>
+                        </div>
+                        <div ng-message="maxlength">
+                            <span>El nombre no puede tener mas de 30 caracteres.</span>
+                        </div>
+                        <div ng-message="length.man">
+                            <span>El nombre no puede tener mas de 30 caracteres.</span>
+                        </div>
+                        <div ng-message="length.min">
+                            <span>El nombre no puede tener menos de 4 caracteres.</span>
+                        </div>              
+
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-block" md-no-float>
+                    <input name="lastName" ng-model="vm.registerForm.lastName" placeholder="Apellido"
+                           maxlength="30" 
+                           minlength="4" 
+                           server-validation="['length.min','length.max']"
+                           required>
+                    <div ng-messages="registerForm.lastName.$error" role="alert" >
+                        <div ng-message="required">
+                            <span >El apellido es requerido</span>
+                        </div>
+                         <div ng-message="minlength">
+                            <span>El nombre no puede tener menos de 4 caracteres.</span>
+                        </div>
+                        <div ng-message="maxlength">
+                            <span>El nombre no puede tener mas de 30 caracteres.</span>
+                        </div>
+                          <div ng-message="length.min">
+                            <span>El nombre no puede tener menos de 4 caracteres.</span>
+                        </div>
+                        <div ng-message="length.max">
+                            <span>El nombre no puede tener mas de 30 caracteres.</span>
+                        </div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container class="md-block" md-no-float>
+                    <input type="text" name="email" ng-model="vm.registerForm.email" placeholder="Correo" 
+                           ng-pattern="/^.+@.+\..+$/" 
+                           server-validation="['uniqueness']"
+                           required>
+                    <div ng-messages="registerForm.email.$error" role="alert" >
+                        <div ng-message="required">
+                            <span >El correo es requerido.</span>
+                        </div>
+                        <div ng-message="pattern">
+                            <span >Debe ser un correo valido.</span>
+                        </div>
+                        <div ng-message="uniqueness">
+                            <span >El correo ya se encuentra registrado.</span>
+                        </div>
+
+                    </div>
+                </md-input-container>
+
+                <md-input-container class="md-block" md-no-float>
+                    <input type="password" name="password" ng-model="vm.registerForm.password" placeholder="Contraseña"
+                           maxlength="30" 
+                           minlength="8"  
+                           required>
+                    <div ng-messages="registerForm.password.$error" role="alert">
+                        <div ng-message="required">
+                            <span >La contraseña es requerida</span>
+                        </div>
+                         <div ng-message="minlength">
+                            <span>La contraseña no puede tener menos de 8 caracteres.</span>
+                        </div>
+                        <div ng-message="maxlength">
+                            <span>La contraseña no puede tener mas de 30 caracteres.</span>
+                        </div>               
+                    </div>
+                </md-input-container>
+
+                <md-input-container class="md-block" md-no-float>
+                    <input type="password" name="passwordConfirm" ng-model="vm.registerForm.passwordConfirm"
+                           placeholder="Confirmar contraseña"
+                           ng-pattern="{{vm.registerForm.password}}" 
+                           required>
+                    <div ng-messages="registerForm.passwordConfirm.$error" role="alert">
+                        <div ng-message="required">
+                            <span>La contraseña  de confirmación es requerida</span>
+                        </div>
+                        <div ng-message="pattern">
+                            <span >Las contraseñas no son iguales</span>
+                        </div>
+                    </div>
+                </md-input-container>
+
+                <md-button type="submit" class="md-raised md-accent submit-button" aria-label="Crear mi cuenta"
+                           ng-disabled="registerForm.$invalid || registerForm.$pristine || vm.isLoading"
+                           >
+                    Crear mi cuenta
+                </md-button>
+            </form>
+
+            <div class="login" layout="row" layout-xs="column"
+                     layout-align="space-between  center">
+                <span class="text" >¿Ya tienes una cuenta?</span>
+                <a class="link" ui-sref="app.auth_login" >Iniciar sesión</a>
+            </div>
+              <div class="text-center">
+                <p class="marca">© HaibuSmart | Haibu Group</p>
+            </div>
+        </div>
+    </div>
+</div>

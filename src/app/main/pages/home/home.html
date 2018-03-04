@@ -1,0 +1,128 @@
+<div id="home"  >
+   <div class="header md-primary-bg md-hue-2" layout="row" layout-align="space-between">
+      <div layout="column" layout-align="center start">
+         <div class="h1 " layout="row" layout-align="start center">
+            <span class="wellcome mr-8">Bienvenido</span><span class="text-bold">{{vm.user.firstName}} {{vm.user.lastName}}</span> 
+         </div>
+      </div>
+      <div layout="column" layout-align="center end" hide-xs>
+         <div class="time text-semi" layout="row">
+            {{vm.time.now.hour}}:{{vm.time.now.minute}}:{{vm.time.now.second}}
+         </div>
+         <div class="full-time text-semi" layout="row">
+            {{vm.time.now.weekDay | capitalize}} {{vm.time.now.day}} de {{vm.time.now.month}} de {{vm.time.now.year}}
+         </div>
+      </div>
+   </div>
+   <!-- CONTENT -->
+   <div class="content">
+      <!-- WIDGET GROUP -->
+      <div class="widget-group " layout="row" flex="100" layout-wrap>
+
+         <ms-widget flippable="false" layout="column" flex="50" flex-gt-xs="25" flex-gt-md="25" >
+            <!-- Front -->
+            <ms-widget-front class="white-bg ">
+               <div class="pt-8">
+                  <div class="h3 text-center ">Bateria </div>
+               </div>
+               <div class="gauge-color p-8 text-center" width="160" ng-radial-gauge ranges="vm.device.gagueBAT.ranges" value="vm.device.gagueBAT.value" value-unit="vm.device.gagueBAT.unit" precision="vm.device.gagueBAT.precision" lower-limit="vm.device.gagueBAT.lowerLimit" upper-limit="vm.device.gagueBAT.upperLimit" angle="90" needle-color="#0095F4" needle-value-text-size="30"></div>
+               <div class="h4 text-center text-semi difference" layout="row" layout-align="center center" >
+                  <div>
+                     <md-icon ng-if="vm.device.gagueBAT.diff>0" md-font-icon="icon-arrow-up"></md-icon>
+                     <md-icon ng-if="vm.device.gagueBAT.diff<0" md-font-icon="icon-arrow-down"></md-icon>
+                  </div>
+                  <div> {{vm.device.gagueBAT.diff?(vm.device.gagueBAT.diff| limitTo : 4 )+'%':''}}</div>
+               </div>
+               <p class="h4 text-center mb-8"> 
+                  {{(vm.device.gagueBAT.timestamp | date :"short")  ||"Sin información"}}
+               </p>
+            </ms-widget-front>
+            <!-- / Front -->
+         </ms-widget>
+         <ms-widget flippable="false" layout="column" flex="50" flex-gt-xs="25" flex-gt-md="25"  >
+            <!-- Front -->
+            <ms-widget-front class="white-bg ">
+               <div class="pt-8">
+                  <div class="h3 text-center ">Carga Solar </div>
+               </div>
+               <div class="gauge-color p-8 text-center" width="160" ng-radial-gauge ranges="vm.device.gagueCHR.ranges" value="vm.device.gagueCHR.value" value-unit="vm.device.gagueCHR.unit" precision="vm.device.gagueCHR.precision" lower-limit="vm.device.gagueCHR.lowerLimit" upper-limit="vm.device.gagueCHR.upperLimit" angle="90" needle-color="#0095F4" needle-value-text-size="30"></div>
+               <div class="h4 text-center text-semi difference" layout="row" layout-align="center center" >
+                  <div>
+                     <md-icon ng-if="vm.device.gagueCHR.diff>0" md-font-icon="icon-arrow-up"></md-icon>
+                     <md-icon ng-if="vm.device.gagueCHR.diff<0" md-font-icon="icon-arrow-down"></md-icon>
+                  </div>
+                  <div> {{vm.device.gagueCHR.diff?(vm.device.gagueCHR.diff| limitTo : 4 )+'%':''}}</div>
+               </div>
+               <p class="h4 text-center mb-8"> 
+                  {{(vm.device.gagueCHR.timestamp | date :"short")  ||"Sin información"}}
+               </p>
+            </ms-widget-front>
+            <!-- / Front -->
+         </ms-widget>
+
+         <ms-widget flippable="false" layout="column" flex="100" flex-gt-xs="50" flex-gt-md="50" >
+                  <!-- Front -->
+                  <ms-widget-front class="white-bg " >
+                     <div class="pt-8">
+                        <div class="h3 text-center  ">Acelerometro</div>
+                     </div>
+                      <div>
+                     <nvd3 class="h-160 remove-x-lines line-chart"
+                        options="vm.device.lineChartACC.options"
+                        data="vm.device.lineChartACC.data"></nvd3>
+                     </div>
+                  </ms-widget-front>
+                  <!-- / Front -->
+          </ms-widget>
+
+       
+          
+      </div>
+
+      <!-- / WIDGET GROUP -->
+       <!-- WIDGET GROUP -->
+      <div class="widget-group " layout="row" flex="100" layout-wrap>
+
+
+          <ms-widget flippable="false" layout="column" flex="100" flex-gt-xs="50" flex-gt-md="50" class="h-340">
+                  <!-- Front -->
+                  <ms-widget-front class="white-bg " >
+                     <div class="pt-8">
+                        <div class="h3 text-center  ">Caudal del rio</div>
+                     </div>
+                      <div>
+                     <nvd3 class="h-250  remove-x-lines line-chart"
+                        options="vm.device.lineChart.options"
+                        data="vm.device.lineChart.data"></nvd3>
+                     </div>
+                  </ms-widget-front>
+                  <!-- / Front -->
+          </ms-widget>
+
+          <ms-widget flippable="false" layout="column" flex="100" flex-gt-xs="50" flex-gt-md="50" class="h-340">
+                  <!-- Front -->
+                  <ms-widget-front >
+                   <!--   <img class="slider" layout-fill flex src="assets/images/fotos/foto-demo.jpg" alt=""> -->
+                      <jk-carousel   layout-fill flex 
+                       data="vm.carousel.images"
+                      max-width="1200" 
+                      max-height="800" 
+                      font-icon-left="icono-izquierda-HaibuSmart"
+                      font-icon-right="icono-derecha-HaibuSmart" 
+                       current-index="vm.carousel.currentIndex"
+                       auto-slide-time="3000" 
+
+                       item-template-url="vm.carousel.templateUrl"
+                       auto-slide="vm.carouse.autoSlide"  >
+                       </jk-carousel>
+                  </ms-widget-front>
+                  <!-- / Front -->
+              </ms-widget>
+
+
+          
+      </div>
+      <!-- WIDGET GROUP -->
+   </div>
+   <!-- / CONTENT -->
+</div>

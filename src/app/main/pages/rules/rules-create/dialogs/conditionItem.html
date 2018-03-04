@@ -1,0 +1,103 @@
+<!-- DIALOG -->
+<md-dialog class="condition-dialog" aria-label="Nuevo Item">
+
+    <form name="conditionForm" class="md-inline-form" novalidate>
+
+        <!-- DIALOG TOOLBAR -->
+        <md-toolbar class="md-accent" layout="column">
+
+            <!-- TOOLBAR TOP -->
+            <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+                <span class="title">{{vm.title}}</span>
+                <md-button class="md-icon-button" ng-click="vm.closeDialog()" aria-label="Cerrar dialog" >
+                    <md-icon md-font-icon="icon-close"></md-icon>
+                </md-button>
+            </div>
+
+        </md-toolbar>
+        <!-- / DIALOG TOOLBAR -->
+
+        <!-- DIALOG CONTENT -->
+        <md-dialog-content ms-scroll>
+
+             <md-input-container class="md-block">
+                <label >Propiedad</label>
+                <md-select name="property" ng-model="vm.condition.property" type="text"  required>
+                <md-option ng-repeat="data in  vm.device.event.data" value="{{data.id}}">{{data.id}}
+                </md-option>
+                </md-select>
+            </md-input-container>
+
+            <md-input-container class="md-block">
+                <label >Operación</label>
+                <md-select name="operation" ng-model="vm.condition.operation" type="text"  required>
+                <md-option ng-repeat="operation in  vm.operations" value="{{operation}}">{{operation}}
+                </md-option>
+                </md-select>
+            </md-input-container>
+
+             <md-input-container class="md-block">
+                <label >Comprar con</label>
+                <md-select name="comparison" ng-model="vm.condition.comparison" type="text"  required>
+                <md-option ng-repeat="comparison in  vm.comparisons" value="{{comparison.id}}">{{comparison.text}}
+                </md-option>
+                </md-select>
+            </md-input-container>
+
+            <md-input-container class="md-block" ng-if="vm.condition.comparison == 'property'">
+                <label >Propiedad</label>
+                <md-select name="propertyComparison" ng-model="vm.condition.propertyComparison" type="text"  required>
+                <md-option ng-repeat="data in  vm.device.event.data" value="{{data.id}}">{{data.id}}
+                </md-option>
+                </md-select>
+            </md-input-container>
+
+
+            <md-input-container class="md-block" ng-if="vm.condition.comparison == 'static'">
+                <label >Valor </label>
+                <input name="value" ng-model="vm.condition.value" type="text"  required>
+                 <div ng-messages="conditionForm.value.$error" role="alert" >
+                        <div ng-message="required">
+                            <span >El valor es requerido.</span>
+                        </div>
+                </div>
+            </md-input-container>
+
+          
+          
+
+        </md-dialog-content>
+        <!-- / DIALOG CONTENT -->
+
+        <!-- DIALOG ACTIONS -->
+        <md-dialog-actions layout="row" layout-align="space-between center">
+            <div layout="row" layout-align="start center">
+                <md-button type="submit" ng-if="!vm.newCondition" ng-click="vm.saveCondition()"
+                           class="send-button md-accent md-raised"
+                           ng-disabled="conditionForm.$invalid || conditionForm.$pristine"
+                         >
+                    GUARDAR
+                </md-button>
+
+                <md-button type="submit" ng-if="vm.newCondition" ng-click="vm.addNewCondition()"
+                           class="send-button md-accent md-raised"
+                           ng-disabled="conditionForm.$invalid || conditionForm.$pristine"
+                          >
+                   Agregar Condición
+                </md-button>
+
+            </div>
+
+            <div layout="row">
+                <md-button class="md-icon-button" ng-click="vm.deleteConfirm($event)" >
+                    <md-icon md-font-icon="icon-delete"></md-icon>
+                    <md-tooltip>BORRAR</md-tooltip>
+                </md-button>
+            </div>
+        </md-dialog-actions>
+        <!-- / DIALOG ACTIONS -->
+
+    </form>
+
+</md-dialog>
+<!-- / DIALOG -->

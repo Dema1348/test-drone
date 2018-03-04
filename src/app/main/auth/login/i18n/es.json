@@ -1,0 +1,16 @@
+{
+    "LOGIN": {
+        "EMAIL": "Correo",
+        "PASSWORD": "Contraseña",
+        "REMEMBER_ME": "Recordarme",
+        "FORGOT_PASSWORD": "¿Olvido su contraseña?",
+        "LOG_IN": "INGRESAR",
+        "DONT_HAVE_ACCOUNT": "¿No tienes una cuenta?",
+        "CREATE_ACCOUNT": "Crear una cuenta",
+        "ERRORS": {
+            "EMAIL_REQUIRED": "El correo es requerido",
+            "EMAIL_MUST_VALID": "Debe ingresar un correo valido",
+            "PASSWORD_REQUIRED": "La contraseña es requerida"
+        }
+    }
+}

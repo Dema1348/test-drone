@@ -1,0 +1,336 @@
+<div id="nodes-create" class="page-layout simple fullwidth " >
+    
+
+        <div class="header md-accent-bg" layout="row" layout-align="space-between">
+            <div layout="column" layout-align="center start">
+                
+
+                  <div class="h1" layout="row" layout-align="start center">
+                    <md-icon class="light" md-font-icon="icono-sensor2-HaibuSmart"></md-icon>
+                    <span> Registrar Nodo</span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- CONTENT -->
+        <div class="content">
+             <ms-form-wizard flex>
+            <md-tabs md-dynamic-height md-selected="msWizard.selectedIndex" md-center-tabs="true">
+                <md-tab>
+                    <md-tab-label>
+                        <span class="ms-form-wizard-step-label">
+                            <span class="ms-form-wizard-step-number md-accent-bg"
+                                  ng-if="wizardStep1.$invalid">1</span>
+                            <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep1.$valid">
+                                <i class="icon-check s16"></i>
+                            </span>
+                            <span class="ms-form-wizard-step-text">Tipo de nodo</span>
+                        </span>
+                    </md-tab-label>
+
+                    <md-tab-body>
+                        <form name="wizardStep1" class="md-inline-form" ms-form-wizard-form novalidate>
+                                    <p>Seleccione el tipo de nodo .</p>
+                                    <md-input-container class="md-block">
+                                        <label>Tipo de nodo</label>
+                                        <md-select name="typeId" ng-model="vm.registerForm.typeId" required>
+                                            <md-option ng-repeat="types in  vm.devicetypes" value="{{types.id}}">{{types.id}}
+                                            </md-option>
+                                        </md-select>
+                                        <div ng-messages="wizardStep1.typeId.$error"
+                                         role="alert">
+                                            <div ng-message="required">
+                                                <span>El tipo de nodo es requerido.</span>
+                                            </div>
+                                        </div>
+                                    </md-input-container>
+
+                        </form>
+                    </md-tab-body>
+                </md-tab>
+
+                <md-tab ng-disabled="wizardStep1.$invalid">
+                    <md-tab-label>
+                        <span class="ms-form-wizard-step-label">
+                            <span class="ms-form-wizard-step-number md-accent-bg"
+                                  ng-if="wizardStep2.$invalid">2</span>
+                            <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep2.$valid">
+                                <i class="icon-check s16"></i>
+                            </span>
+                            <span class="ms-form-wizard-step-text">Información</span>
+                        </span>
+                    </md-tab-label>
+
+                    <md-tab-body>
+                        <form name="wizardStep2" ms-form-wizard-form novalidate>
+                            <div class="form-title"></div>
+                            <p>El <span class="text-bold">Nombre del nodo</span> es la única información necesaria</p>
+                             <div layout="column" layout-gt-xs="row" flex>
+                             <md-input-container flex="100" flex-gt-xs="50">
+                                <input type="text" name="name" ng-model="vm.registerForm.name"
+                                       ng-pattern="/^[A-Za-z0-9\-\_\.\s]{1,36}$/"
+                                       maxlength="36" 
+                                       placeholder="Nombre del nodo"
+                                       required>
+                                <div ng-messages="wizardStep2.name.$error"
+                                     role="alert">
+                                    <div ng-message="required">
+                                        <span>Debe especificar el nombre para su nodo.</span>
+                                    </div>
+                                    <div ng-message="maxlength">
+                                        <span>El nombre del nodo no puede tener mas de 36 caracteres.</span>
+                                    </div>
+                                </div>
+                            </md-input-container>
+                             <md-input-container flex="100" flex-gt-xs="50">
+                                <input type="text" name="manufacturer" ng-model="vm.registerForm.deviceInfo.manufacturer"
+                                       ng-pattern="/^[A-Za-z0-9\-\_\.]{1,36}$/"
+                                       maxlength="80" 
+                                       placeholder="Fabricante"
+                                       >
+                                <div ng-messages="wizardStep2.manufacturer.$error"
+                                     role="alert">
+                                    
+                                    <div ng-message="maxlength">
+                                        <span>El fabricante no puede tener mas de 80 caracteres.</span>
+                                    </div>
+                                </div>
+                            </md-input-container>
+                            </div>
+                             <div layout="column" layout-gt-xs="row" flex>
+                             <md-input-container flex="100" flex-gt-xs="50">
+                                <input type="text" name="serialNumber" ng-model="vm.registerForm.deviceInfo.serialNumber"
+                                       ng-pattern="/^[A-Za-z0-9\-\_\.]{1,36}$/"
+                                       maxlength="80" 
+                                       placeholder="Número de serie"
+                                       >
+                                <div ng-messages="wizardStep2.serialNumber.$error"
+                                     role="alert">
+                                    
+                                    <div ng-message="maxlength">
+                                        <span>El número de serie no puede tener mas de 80 caracteres.</span>
+                                    </div>
+                                </div>
+                            </md-input-container>
+                            <md-input-container md-input-container flex="100" flex-gt-xs="50">
+                                <input type="text" name="model" ng-model="vm.registerForm.deviceInfo.model"
+                                       ng-pattern="/^[A-Za-z0-9\-\_\.]{1,36}$/"
+                                       maxlength="80" 
+                                       placeholder="Modelo"
+                                       >
+                                <div ng-messages="wizardStep2.model.$error"
+                                     role="alert">
+                                    
+                                    <div ng-message="maxlength">
+                                        <span>El modelo no puede tener mas de 80 caracteres.</span>
+                                    </div>
+                                </div>
+                            </md-input-container>
+                            </div>
+
+                             <div layout="column" layout-gt-xs="row" flex>
+                             <md-input-container flex="100" flex-gt-xs="50">
+                                <input type="text" name="deviceClass" ng-model="vm.registerForm.deviceInfo.deviceClass"
+                                       ng-pattern="/^[A-Za-z0-9\-\_\.]{1,36}$/"
+                                       maxlength="80" 
+                                       placeholder="Clase"
+                                       >
+                                <div ng-messages="wizardStep2.deviceClass.$error"
+                                     role="alert">
+                                    
+                                    <div ng-message="maxlength">
+                                        <span>La clase no puede tener mas de 80 caracteres.</span>
+                                    </div>
+                                </div>
+                            </md-input-container>
+                            <md-input-container md-input-container flex="100" flex-gt-xs="50">
+                                <input type="text" name="description" ng-model="vm.registerForm.deviceInfo.description"
+                                       ng-pattern="/^[A-Za-z0-9\-\_\.]{1,36}$/"
+                                       maxlength="80" 
+                                       placeholder="Descripción"
+                                       >
+                                <div ng-messages="wizardStep2.description.$error"
+                                     role="alert">
+                                    
+                                    <div ng-message="maxlength">
+                                        <span>La descripción no puede tener mas de 80 caracteres.</span>
+                                    </div>
+                                </div>
+                            </md-input-container>
+                            </div>
+
+                            <div layout="column" layout-gt-xs="row" flex>
+                             <md-input-container flex="100" flex-gt-xs="50">
+                                <input type="text" name="fwVersion" ng-model="vm.registerForm.deviceInfo.fwVersion"
+                                       ng-pattern="/^[A-Za-z0-9\-\_\.]{1,36}$/"
+                                       maxlength="80" 
+                                       placeholder="Versión de firmware"
+                                       >
+                                <div ng-messages="wizardStep2.fwVersion.$error"
+                                     role="alert">
+                                    
+                                    <div ng-message="maxlength">
+                                        <span>La versión de firmware no puede tener mas de 80 caracteres.</span>
+                                    </div>
+                                </div>
+                            </md-input-container>  
+                            <md-input-container md-input-container flex="100" flex-gt-xs="50">
+                                <input type="text" name="hwVersion" ng-model="vm.registerForm.deviceInfo.hwVersion"
+                                       ng-pattern="/^[A-Za-z0-9\-\_\.]{1,36}$/"
+                                       maxlength="80" 
+                                       placeholder="Versión de hardware"
+                                       >
+                                <div ng-messages="wizardStep2.hwVersion.$error"
+                                     role="alert">
+                                    
+                                    <div ng-message="maxlength">
+                                        <span>La versión de hardware no puede tener mas de 80 caracteres.</span>
+                                    </div>
+                                </div>
+                            </md-input-container> 
+                            </div>
+
+                        </form>
+                    </md-tab-body>
+                </md-tab>
+
+                <md-tab ng-disabled="wizardStep1.$invalid || wizardStep2.$invalid">
+                    <md-tab-label>
+                        <span class="ms-form-wizard-step-label">
+                            <span class="ms-form-wizard-step-number md-accent-bg"
+                                  ng-if="wizardStep3.$invalid">3</span>
+                            <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep3.$valid">
+                                <i class="icon-check s16"></i>
+                            </span>
+                            <span class="ms-form-wizard-step-text">Seguridad</span>
+                        </span>
+                    </md-tab-label>
+                    <md-tab-body>
+                        <form name="wizardStep3" ms-form-wizard-form novalidate>
+                            <p>Tiene dos opciones; la señal de autenticación generada automáticamente y la señal de autenticación proporcionada.</p>
+                            
+                            <md-input-container class="md-block">
+                                <input type="text" name="authToken" ng-model="vm.registerForm.authToken"
+                                       ng-pattern="/^[A-Za-z0-9\-\_\.\?\@\+\*\!\&\(\)]*$/"
+                                       maxlength="36" 
+                                       minlength="8" 
+                                       placeholder="Señal de autenticación (opcional)"
+                                       >
+                                <div ng-messages="wizardStep3.authToken.$error"
+                                     role="alert">
+                                    
+                                    <div ng-message="pattern">
+                                        La señal de autenticación puede contener solo caracteres alfanuméricos y los siguientes caracteres especiales: guión ( - ), guión bajo ( _ ), punto de exclamación ( ! ), ampersand ( & ), arroba ( @ ), signo de interrogación ( ? ), asterisco ( * ), signo más ( + ), punto ( . ) o los paréntesis izquierdo y derecho.
+                                    </div>
+                                      <div ng-message="minlength">
+                                        <span>La señal de autenticación debe tener como mínimo 8 caracteres de longitud.</span>
+                                    </div>
+                                    <div ng-message="maxlength">
+                                        <span>La señal de autenticación debe tener como máximo 36 caracteres de longitud.</span>
+                                    </div>
+
+                                </div>
+                               <!--  <div class="form-title">
+                                    Las señales de autenticación no son recuperables. Si pierde esta señal, deberá volver a registrar el dispositivo para generar una señal de autenticación nueva.
+                                </div> -->
+                            </md-input-container>  
+                        </form>
+                    </md-tab-body>
+                </md-tab>
+
+                <md-tab ng-disabled="wizardStep1.$invalid || wizardStep2.$invalid || wizardStep3.$invalid">
+                   <md-tab-label>
+                        <span class="ms-form-wizard-step-label">
+                            <span class="ms-form-wizard-step-number md-accent-bg"
+                                  ng-if="wizardStep4.$invalid">4</span>
+                            <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep4.$valid">
+                                <i class="icon-check s16"></i>
+                            </span>
+                            <span class="ms-form-wizard-step-text">Geolocalización</span>
+                        </span>
+                    </md-tab-label>
+                    <md-tab-body>
+                        <form name="wizardStep4" ms-form-wizard-form novalidate>
+                              <div class="form-title">Seleccione la geolocalización de su nodo.</div>   
+                                <md-input-container class="md-block">
+                                    <ui-gmap-google-map   options="vm.map.options" center="vm.map.center" zoom="vm.map.zoom">
+                                    <ui-gmap-marker coords="vm.map.center"
+                                    options="vm.options"
+                                    idkey="1">
+                                    </ui-gmap-marker>
+                                    </ui-gmap-google-map>  
+                                 </md-input-container> 
+                        </form>
+                    </md-tab-body>
+                </md-tab>
+
+                <md-tab ng-disabled="wizardStep1.$invalid || wizardStep2.$invalid || wizardStep3.$invalid || wizardStep4.$invalid">
+                   <md-tab-label>
+                        <span class="ms-form-wizard-step-label">
+                            <span class="ms-form-wizard-step-number md-accent-bg"
+                                  ng-if="wizardStep5.$invalid">5</span>
+                            <span class="ms-form-wizard-step-number md-accent-bg" ng-if="wizardStep5.$valid">
+                                <i class="icon-check s16"></i>
+                            </span>
+                            <span class="ms-form-wizard-step-text">Resumen</span>
+                        </span>
+                    </md-tab-label>
+                    <md-tab-body>
+                        <form name="wizardStep5" ms-form-wizard-form novalidate>
+                            <p>Compruebe que toda la información enviada para este nodo es correcta antes de añadirlo.</p>
+
+                            <div class="preview layout-align-center-stretch layout-column" flex >
+                                <div class="md-caption mb-8">Tipo de nodo</div>
+                                 {{vm.registerForm.typeId}}
+                            </div>
+                            <div class="preview layout-align-center-stretch layout-column" flex >
+                                <div class="md-caption mb-8">Nombre del nodo</div>
+                                 {{vm.registerForm.name}}
+                            </div>
+                            <div class="preview layout-align-center-stretch layout-column" flex >
+                                <div class="md-caption mb-8">Señal de autenticación</div>
+                                 {{vm.registerForm.authToken || "Se generará"}}
+                            </div>
+                            <div class="preview layout-align-center-stretch layout-column" flex >
+                                <div class="md-caption mb-8">Geolocalización</div>
+                                 Latitud: {{vm.map.center.latitude}}
+                                 <br>
+                                 Longitud: {{vm.map.center.longitude}}
+                            </div>
+                            
+                        </form>
+                    </md-tab-body>
+                </md-tab>
+
+            </md-tabs>
+
+            <div class="navigation" flex layout="row" layout-align="center center">
+                <md-button class="md-raised md-accent" ng-click="msWizard.previousStep()"
+                           ng-disabled="msWizard.isFirstStep()">
+                    Atrás
+                </md-button>
+                <div class="steps">
+                    <span ng-repeat="form in msWizard.forms"
+                          ng-class="{'selected md-accent-bg':msWizard.selectedIndex === $index}"></span>
+                </div>
+                <md-button class="md-raised md-accent" ng-click="msWizard.nextStep()"
+                           ng-hide="msWizard.isLastStep()"
+                           ng-disabled="msWizard.currentStepInvalid()">
+                    Siguiente
+                </md-button>
+                <md-button class="md-raised md-accent" ng-click="vm.sendForm($event)"
+                           ng-show="msWizard.isLastStep()"
+                           ng-disabled="msWizard.formsIncomplete()">
+                    Registrar
+                </md-button>
+            </div>
+
+        </ms-form-wizard>
+    </div>
+    <!-- / CONTENT -->
+
+    
+
+</div>
