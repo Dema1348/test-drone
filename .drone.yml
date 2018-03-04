@@ -24,7 +24,8 @@ pipeline:
   deploy:
     image: appleboy/drone-ssh	
     host: 67.205.144.184
-    user: root
+    username: root
+    password: haibu2017.
     port: 22
     commands:
       - docker pull edsonhaibu/haibu-smart-arauco
