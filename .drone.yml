@@ -8,8 +8,3 @@ pipeline:
       - bower install
       - gulp clean
       - gulp build
-cache:
-  mount:
-    - node_modules
-    - bower_components
-    - .git
