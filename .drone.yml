@@ -1,10 +1,20 @@
 pipeline:
+#  pre-build:
+#    image: node:latest
+#    commands:
+#      - npm install
+#      - npm install gulp -g
+#      - npm install bower -g
+#      - bower install --allow-root
+#      - gulp clean
+#      - gulp build
   build:
     image: plugins/docker
     environment:
       - DOCKER_LAUNCH_DEBUG=true
     username: edsonhaibu
     password: haibu2017. 
+    email: edson.perez@haibu.cl
     repo: edsonhaibu/haibu-smart-arauco
     dockerfile: Dockerfile
     tag: 
@@ -12,3 +22,19 @@ pipeline:
     insecure: false
     when:
       branch: master
+  notify:
+    image: drillster/drone-email
+    environment:
+      - DOCKER_LAUNCH_DEBUG=true
+    host: smtp.gmail.com
+    port: 465
+    from: no-reply@haibu.cl
+    username: no-reply@haibu.cl
+    password: haibu2017.
+    subject: >
+      [{{ build.status }}]
+      {{ repo.owner }}/{{ repo.name }}
+    template: >
+      https://git.io/vgvPz
+    when:
+      status: [ success, failure ]
