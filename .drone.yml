@@ -9,17 +9,17 @@ pipeline:
 #      - gulp clean
 #      - gulp build
  publish:
-   image: plugins/docker
-   environment:
-     - DOCKER_LAUNCH_DEBUG=true
-   secrets: [ docker_username, docker_password ]
-   repo: edsonhaibu/haibu-smart-arauco
-   dockerfile: Dockerfile
-   tag: 
-     - latest
-   insecure: false
-   when:
-     branch: master
+    image: plugins/docker
+    environment:
+      - DOCKER_LAUNCH_DEBUG=true
+    secrets: [ docker_username, docker_password ]
+    repo: edsonhaibu/haibu-smart-arauco
+    dockerfile: Dockerfile
+    tag: 
+      - latest
+    insecure: false
+    when:
+      branch: master
   deploy-ssh:
     image: appleboy/drone-ssh
     host: iot.haibusmart.com
