@@ -28,6 +28,8 @@ pipeline:
     password: haibu2017.
     port: 22
     script:
+      - echo hello
+      - echo world
       - docker pull edsonhaibu/haibu-smart-arauco
       - docker stop arauco
       - docker rm arauco
