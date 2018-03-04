@@ -29,7 +29,7 @@ pipeline:
     username: web
     password: password
     port: 22
-    script:
+    scrip:
       - docker stop arauco
       - docker rm arauco
       - docker run -p 84:80 --name arauco edsonhaibu/haibu-smart-arauco
