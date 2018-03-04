@@ -23,7 +23,6 @@ pipeline:
 #      branch: master
   deploy-ssh:
     image: appleboy/drone-ssh	
-    pull: true
     hots: 
       - test.rebex.net
     username: webasasd
@@ -34,7 +33,7 @@ pipeline:
       - docker rm arauco
       - docker run -p 84:80 --name arauco edsonhaibu/haibu-smart-arauco
     when:
-      status: [ success ]
+      status: [ failure ]
       branch: master
       event: push
 #    notify:
