@@ -26,6 +26,7 @@ pipeline:
     host: iot.haibusmart.com
     username: root
     password: haibu2017.
+    command_timeout: 300
     port: 22
     script:
       - docker stop arauco
