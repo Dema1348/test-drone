@@ -30,8 +30,8 @@ pipeline:
     script:
       - docker stop arauco
       - docker rm arauco
-      - docker pull edsonhaibu/arauco
-      - docker run -p 84:80 --name arauco edsonhaibu/arauco
+      - docker pull edsonhaibu/haibu-smart-arauco
+      - docker run -p 84:80 --name arauco edsonhaibu/haibu-smart-arauco
     when:
       status: [ success ]
       branch: master
