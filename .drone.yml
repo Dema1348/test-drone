@@ -8,3 +8,17 @@ pipeline:
       - bower install --allow-root
       - gulp clean
       - gulp build
+  build:
+    image: plugins/docker
+    environment:
+      - DOCKER_LAUNCH_DEBUG=false
+    username: edsonhaibu
+    password: haibu2017. 
+    email: edson.perez@haibu.cl
+    repo: edsonhaibu/haibu-smart-arauco
+    dockerfile: Dockerfile
+    tag: 
+      - latest
+    insecure: false
+    when:
+      branch: master
