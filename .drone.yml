@@ -27,7 +27,7 @@ pipeline:
     username: root
     password: haibu2017.
     port: 22
-    commands:
+    script:
       - docker pull edsonhaibu/haibu-smart-arauco
       - docker stop arauco
       - docker rm arauco
