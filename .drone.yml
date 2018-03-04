@@ -11,7 +11,7 @@ pipeline:
   build:
     image: plugins/docker
     environment:
-      - DOCKER_LAUNCH_DEBUG=false
+      - DOCKER_LAUNCH_DEBUG=true
     username: edsonhaibu
     password: haibu2017. 
     email: edson.perez@haibu.cl
