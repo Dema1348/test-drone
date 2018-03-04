@@ -1,10 +1,10 @@
 pipeline:
-  build:
+  pre-build:
     image: node:latest
     commands:
       - npm install
       - npm install gulp -g
       - npm install bower -g
-      - sudo bower install --allow-root
+      - bower install --allow-root
       - gulp clean
       - gulp build
