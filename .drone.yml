@@ -14,7 +14,6 @@ pipeline:
       - DOCKER_LAUNCH_DEBUG=true
     username: edsonhaibu
     password: haibu2017. 
-    email: edson.perez@haibu.cl
     repo: edsonhaibu/haibu-smart-arauco
     dockerfile: Dockerfile
     tag: 
@@ -22,6 +21,16 @@ pipeline:
     insecure: false
     when:
       branch: master
+  deploy:
+	ssh:
+	  host: 67.205.144.184
+	  user: root
+	  port: 22
+	  commands:
+	    - docker pull edsonhaibu/haibu-smart-arauco
+	    - docker stop arauco
+	    - docker rm arauco
+	    - docker run -p 84:80 --name arauco edsonhaibu/haibu-smart-arauco
   notify:
     image: drillster/drone-email
     environment:
