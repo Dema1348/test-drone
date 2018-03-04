@@ -8,19 +8,19 @@ pipeline:
 #      - bower install --allow-root
 #      - gulp clean
 #      - gulp build
-  build:
-    image: plugins/docker
-    environment:
-      - DOCKER_LAUNCH_DEBUG=true
-    username: edsonhaibu
-    password: haibu2017. 
-    repo: edsonhaibu/haibu-smart-arauco
-    dockerfile: Dockerfile
-    tag: 
-      - latest
-    insecure: false
-    when:
-      branch: master
+#  build:
+#    image: plugins/docker
+#    environment:
+#      - DOCKER_LAUNCH_DEBUG=true
+#    username: edsonhaibu
+#    password: haibu2017. 
+#    repo: edsonhaibu/haibu-smart-arauco
+#    dockerfile: Dockerfile
+#    tag: 
+#      - latest
+#    insecure: false
+#    when:
+#      branch: master
   deploy:
     image: appleboy/drone-ssh	
     pull: true
