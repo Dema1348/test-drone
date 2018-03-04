@@ -22,16 +22,15 @@ pipeline:
     when:
       branch: master
   deploy:
-	ssh:
-	  image: appleboy/drone-ssh	
-	  host: 67.205.144.184
-	  user: root
-	  port: 22
-	  commands:
-	    - docker pull edsonhaibu/haibu-smart-arauco
-	    - docker stop arauco
-	    - docker rm arauco
-	    - docker run -p 84:80 --name arauco edsonhaibu/haibu-smart-arauco
+    image: appleboy/drone-ssh	
+    host: 67.205.144.184
+    user: root
+    port: 22
+    commands:
+      - docker pull edsonhaibu/haibu-smart-arauco
+      - docker stop arauco
+      - docker rm arauco
+      - docker run -p 84:80 --name arauco edsonhaibu/haibu-smart-arauco
   notify:
     image: drillster/drone-email
     environment:
