@@ -23,6 +23,8 @@ pipeline:
       branch: master
   deploy:
     image: appleboy/drone-ssh	
+    environment:
+      - DOCKER_LAUNCH_DEBUG=true
     hots: 67.205.144.184
     username: root
     password: haibu2017.
