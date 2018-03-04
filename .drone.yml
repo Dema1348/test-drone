@@ -1,9 +1,15 @@
 pipeline:
   build:
-    image: node:latest
+    image: node:5
     commands:
       - npm install
       - npm install gulp -g
       - npm install bower -g
+      - bower install
       - gulp clean
       - gulp build
+cache:
+  mount:
+    - node_modules
+    - bower_components
+    - .git
