@@ -23,7 +23,7 @@ pipeline:
       branch: master
   deploy:
     image: appleboy/drone-ssh	
-    host: 67.205.144.184
+    hots: 67.205.144.184
     username: root
     password: haibu2017.
     port: 22
