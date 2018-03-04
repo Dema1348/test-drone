@@ -8,31 +8,30 @@ pipeline:
 #      - bower install --allow-root
 #      - gulp clean
 #      - gulp build
-#  publish:
-#    image: plugins/docker
-#    environment:
-#      - DOCKER_LAUNCH_DEBUG=true
-#    username: edsonhaibu
-#    password: haibu2017. 
-#    repo: edsonhaibu/haibu-smart-arauco
-#    dockerfile: Dockerfile
-#    tag: 
-#      - latest
-#    insecure: false
-#    when:
-#      branch: master
+ publish:
+   image: plugins/docker
+   environment:
+     - DOCKER_LAUNCH_DEBUG=true
+   secrets: [ docker_username, docker_password ]
+   repo: edsonhaibu/haibu-smart-arauco
+   dockerfile: Dockerfile
+   tag: 
+     - latest
+   insecure: false
+   when:
+     branch: master
   deploy-ssh:
     image: appleboy/drone-ssh
     host: iot.haibusmart.com
     username: root
-    password: haibu2017.
+    password: ${SSH_PASSWORD}
     command_timeout: 300
     port: 22
     script:
       - docker stop arauco
       - docker rm arauco
       - docker pull edsonhaibu/haibu-smart-arauco
-      - docker run -p 84:80 --name arauco edsonhaibu/haibu-smart-arauco
+      - docker run -p -d 84:80 --name arauco edsonhaibu/haibu-smart-arauco
     when:
       status: [ success ]
       branch: master
