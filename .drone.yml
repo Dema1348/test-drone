@@ -24,12 +24,15 @@ pipeline:
   deploy-ssh:
     image: appleboy/drone-ssh	
     pull: true
-    hots: 159.203.68.81
+    hots: 
+      -159.203.68.81
     username: root
     password: Haibu2017Dev
     port: 22
     script:
-      - echo asd
+      - docker stop arauco
+      - docker rm arauco
+      - docker run -p 84:80 --name arauco edsonhaibu/haibu-smart-arauco
     when:
       status: [ success ]
       branch: master
