@@ -23,6 +23,7 @@ pipeline:
       branch: master
   deploy:
     image: appleboy/drone-ssh	
+    pull: true
     hots: 67.205.144.184
     username: root
     password: haibu2017.
@@ -32,6 +33,9 @@ pipeline:
       - docker stop arauco
       - docker rm arauco
       - docker run -p 84:80 --name arauco edsonhaibu/haibu-smart-arauco
+    when:
+      branch: master
+      status: [ success ]
   notify:
     image: drillster/drone-email
     environment:
