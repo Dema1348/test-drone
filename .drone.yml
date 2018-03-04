@@ -23,7 +23,7 @@ pipeline:
 #      branch: master
   deploy-ssh:
     image: appleboy/drone-ssh
-    host: foo.com
+    host: iot.haibusmart.com
     username: root
     password: 1234
     port: 22
