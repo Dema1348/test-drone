@@ -20,7 +20,7 @@ pipeline:
     insecure: false
     when:
       branch: master
-  deploy-ssh:
+ deploy-ssh:
     image: appleboy/drone-ssh
     host: iot.haibusmart.com
     username: root
