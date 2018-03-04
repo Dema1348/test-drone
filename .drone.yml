@@ -29,10 +29,7 @@ pipeline:
     password: haibu2017.
     port: 22
     script:
-      - docker pull edsonhaibu/haibu-smart-arauco
-      - docker stop arauco
-      - docker rm arauco
-      - docker run -p 84:80 --name arauco edsonhaibu/haibu-smart-arauco
+      - docker ps -a
     when:
       branch: master
       status: [ success ]
