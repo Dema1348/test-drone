@@ -4,5 +4,6 @@ pipeline:
     commands:
       - npm install
       - npm install gulp -g
+      - npm install bower -g
       - gulp clean
       - gulp build
