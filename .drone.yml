@@ -24,7 +24,7 @@ pipeline:
     image: appleboy/drone-ssh
     host: iot.haibusmart.com
     username: root
-    password: ${SSH_PASSWORD}
+    secrets: [ ssh_password ]
     command_timeout: 300
     port: 22
     script:
