@@ -21,7 +21,7 @@ pipeline:
     insecure: false
     when:
       branch: master
-  deploy:
+  ssh:
     image: appleboy/drone-ssh	
     pull: true
     hots: 67.205.144.184
@@ -32,20 +32,21 @@ pipeline:
       - docker ps -a
     when:
       branch: master
-      status: [ success ]
-  notify:
-    image: drillster/drone-email
-    environment:
-      - DOCKER_LAUNCH_DEBUG=true
-    host: smtp.gmail.com
-    port: 465
-    from: no-reply@haibu.cl
-    username: no-reply@haibu.cl
-    password: haibu2017.
-    subject: >
-      [{{ build.status }}]
-      {{ repo.owner }}/{{ repo.name }}
-    template: >
-      https://git.io/vgvPz
-    when:
-      status: [ success, failure ]
+      event: push
+#  notify:
+#    image: drillster/drone-email
+#    environment:
+#      - DOCKER_LAUNCH_DEBUG=true
+#    host: smtp.gmail.com
+#    port: 465
+#    from: no-reply@haibu.cl
+#    username: no-reply@haibu.cl
+#    password: haibu2017.
+#    subject: >
+#      [{{ build.status }}]
+#      {{ repo.owner }}/{{ repo.name }}
+#    template: >
+#      https://git.io/vgvPz
+#    when:
+#      status: [ success, failure ]
+#      branch: master
