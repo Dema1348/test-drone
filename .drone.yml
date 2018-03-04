@@ -31,24 +31,23 @@ pipeline:
       - docker stop arauco
       - docker rm arauco
       - docker pull edsonhaibu/haibu-smart-arauco
-      - docker run -p -d 84:80 --name arauco edsonhaibu/haibu-smart-arauco
+      - docker run -d -p 84:80 --name arauco edsonhaibu/haibu-smart-arauco
     when:
       status: [ success ]
       branch: master
       event: push
-#    notify:
-#    image: drillster/drone-email
-#    environment:
-#      - DOCKER_LAUNCH_DEBUG=true
-#    host: smtp.gmail.com
-#    port: 465
-#    from: no-reply@haibu.cl
-#    username: no-reply@haibu.cl
-#    password: haibu2017.
-#    subject: >
-#      [{{ build.status }}]
-#      {{ repo.owner }}/{{ repo.name }}
-#    template: >
-#      https://git.io/vgvPz
-#    when:
-#      status: [ success, failure ]
+ notify:
+    image: drillster/drone-email
+    environment:
+      - DOCKER_LAUNCH_DEBUG=true
+    host: smtp.gmail.com
+    port: 465
+    from: no-reply@haibu.cl
+    secrets: [ email_password , email_username, email_recipients ]
+    subject: >
+      [{{ build.status }}]
+      {{ repo.owner }}/{{ repo.name }}
+    template: >
+      https://git.io/vgvPz
+    when:
+      status: [ success, failure ]
