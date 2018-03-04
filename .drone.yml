@@ -1,13 +1,4 @@
 pipeline:
-  pre-build:
-    image: node:latest
-    commands:
-      - npm install
-      - npm install gulp -g
-      - npm install bower -g
-      - bower install --allow-root
-      - gulp clean
-      - gulp build
   build:
     image: plugins/docker
     environment:
