@@ -5,6 +5,6 @@ pipeline:
       - npm install
       - npm install gulp -g
       - npm install bower -g
-      - bower install
+      - sudo bower install --allow-root
       - gulp clean
       - gulp build
