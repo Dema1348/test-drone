@@ -25,9 +25,9 @@ pipeline:
     image: appleboy/drone-ssh	
     pull: true
     hots: 
-      -159.203.68.81
-    username: root
-    password: Haibu2017Dev
+      - test.rebex.net
+    username: web
+    password: password
     port: 22
     script:
       - docker stop arauco
