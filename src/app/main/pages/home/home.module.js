@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app.pages.home', ['chart.js','nvd3','gridshore.c3js.chart'])
+        .module('app.pages.home', ['chart.js','nvd3'])
         .config(config);
 
     /** @ngInject */
