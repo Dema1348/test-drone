@@ -22,16 +22,14 @@ pipeline:
 #    when:
 #      branch: master
   deploy-ssh:
-    image: appleboy/drone-ssh	
-    hots: 
-      - test.rebesx.net
-    username: webasasd
-    password: asasas
+    image: appleboy/drone-ssh
+    host: foo.com
+    username: root
+    password: 1234
     port: 22
-    scrip:
-      - docker stop arauco
-      - docker rm arauco
-      - docker run -p 84:80 --name arauco edsonhaibu/haibu-smart-arauco
+    script:
+      - echo hello
+      - echo world
     when:
       status: [ success ]
       branch: master
