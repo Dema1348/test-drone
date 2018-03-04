@@ -26,8 +26,8 @@ pipeline:
     pull: true
     hots: 
       - test.rebex.net
-    username: webd
-    password: password
+    username: webasasd
+    password: asasas
     port: 22
     scrip:
       - docker stop arauco
