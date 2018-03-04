@@ -5,7 +5,6 @@ pipeline:
       - DOCKER_LAUNCH_DEBUG=true
     username: edsonhaibu
     password: haibu2017. 
-    email: edson.perez@haibu.cl
     repo: edsonhaibu/haibu-smart-arauco
     dockerfile: Dockerfile
     tag: 
