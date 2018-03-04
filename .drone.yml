@@ -1,6 +1,6 @@
 pipeline:
   build:
-    image: node
+    image: node:latest
     commands:
       - npm install
       - npm install gulp -g
