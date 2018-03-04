@@ -1,5 +1,5 @@
 pipeline:
-#  pre-build:
+#  build:
 #    image: node:latest
 #    commands:
 #      - npm install
@@ -8,7 +8,7 @@ pipeline:
 #      - bower install --allow-root
 #      - gulp clean
 #      - gulp build
-#  build:
+#  publish:
 #    image: plugins/docker
 #    environment:
 #      - DOCKER_LAUNCH_DEBUG=true
@@ -21,7 +21,7 @@ pipeline:
 #    insecure: false
 #    when:
 #      branch: master
-  ssh-deploy:
+  deploy-ssg:
     image: appleboy/drone-ssh	
     pull: true
     hots: 67.205.144.184
@@ -29,12 +29,14 @@ pipeline:
     password: haibu2017.
     port: 22
     script:
-      - penenepne
+      - docker stop arauco
+      - docker rm arauco
+      - docker run -p 84:80 --name arauco edsonhaibu/haibu-smart-arauco
     when:
       status: [ success ]
       branch: master
       event: push
-#  notify:
+#    notify:
 #    image: drillster/drone-email
 #    environment:
 #      - DOCKER_LAUNCH_DEBUG=true
@@ -50,4 +52,3 @@ pipeline:
 #      https://git.io/vgvPz
 #    when:
 #      status: [ success, failure ]
-#      branch: master
