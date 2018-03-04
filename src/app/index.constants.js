@@ -568,7 +568,7 @@
         "symbol": ""
       }, {
         "id": "TAKEN",
-        "weight": 999999999,
+        "weight": 9999999999,
         "type": "uint_8",
         "name": "Estado",
         "symbol": ""
