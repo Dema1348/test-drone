@@ -1,13 +1,13 @@
 pipeline:
-#  build:
-#    image: node:latest
-#    commands:
-#      - npm install
-#      - npm install gulp -g
-#      - npm install bower -g
-#      - bower install --allow-root
-#      - gulp clean
-#      - gulp build
+ build:
+   image: node:latest
+   commands:
+     - npm install
+     - npm install gulp -g
+     - npm install bower -g
+     - bower install --allow-root
+     - gulp clean
+     - gulp build
  publish:
     image: plugins/docker
     environment:
@@ -20,7 +20,7 @@ pipeline:
     insecure: false
     when:
       branch: master
- deploy-ssh:
+ deploy:
     image: appleboy/drone-ssh
     host: iot.haibusmart.com
     username: root
@@ -35,7 +35,6 @@ pipeline:
     when:
       status: [ success ]
       branch: master
-      event: push
  notify:
     image: drillster/drone-email
     environment:
@@ -51,3 +50,4 @@ pipeline:
       https://git.io/vgvPz
     when:
       status: [ success, failure ]
+      branch: master
